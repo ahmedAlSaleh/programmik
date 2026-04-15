@@ -1,0 +1,409 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #092635;
+  --ink-muted: #4a6561;
+  --blue-950: #071c25;
+  --blue-900: #092635;
+  --blue-800: #12363a;
+  --blue-700: #1b4242;
+  --blue-600: #2e5755;
+  --blue-500: #5c8374;
+  --blue-200: #9ec8b9;
+  --blue-100: #e6f6f2;
+  --surface: #f4fbfa;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 420ms;
+  --scroll-y: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: transparent;
+  color: var(--ink);
+  font-family: "Space Grotesk", "Satoshi", "Manrope", "Segoe UI", sans-serif;
+  text-align: start;
+}
+
+[dir="rtl"] body {
+  text-align: right;
+}
+
+.dir-ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes site-open {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes whatsapp-ping {
+  from {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  to {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+@keyframes robot-roam {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(1.4rem, -0.45rem, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate3d(2.2rem, 0.25rem, 0) rotate(-1deg);
+  }
+  75% {
+    transform: translate3d(1.1rem, 0.65rem, 0) rotate(1deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes robot-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes robot-blink {
+  0%,
+  44%,
+  48%,
+  100% {
+    transform: scaleY(1);
+  }
+  46% {
+    transform: scaleY(0.12);
+  }
+}
+
+.page-transition {
+  animation: page-enter 0.26s var(--motion-ease) both;
+}
+
+.site-open {
+  animation: site-open 0.36s var(--motion-ease) both;
+}
+
+.gradient-motion {
+  background-size: 100% 100%;
+}
+
+.animated-ui :is(a, button, input, textarea, select, [role="button"]) {
+  transition: transform 0.18s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.animated-ui :is(a, button, [role="button"]):active {
+  transform: translateY(1px) scale(0.985);
+  opacity: 0.9;
+}
+
+.animated-ui .hover-card {
+  transition: transform 0.24s var(--motion-ease), box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.animated-ui .hover-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 42px rgba(27, 66, 66, 0.14);
+}
+
+.site-motion-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(9, 38, 53, 0.28),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(27, 66, 66, 0.3),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 40% 80%,
+      rgba(92, 131, 116, 0.22),
+      transparent 45%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(9, 38, 53, 0.14),
+      rgba(27, 66, 66, 0.2),
+      rgba(158, 200, 185, 0.2)
+    );
+  opacity: 0.62;
+}
+
+.reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(0.986);
+  filter: blur(4px);
+  transition: transform var(--reveal-duration) var(--motion-ease),
+    opacity calc(var(--reveal-duration) - 40ms) ease-out,
+    filter calc(var(--reveal-duration) - 110ms) ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.parallax-soft {
+  transform: translate3d(0, calc(var(--scroll-y) * 0.045), 0);
+  will-change: transform;
+}
+
+.parallax-deep {
+  transform: translate3d(0, calc(var(--scroll-y) * 0.08), 0);
+  will-change: transform;
+}
+
+.robot-guide {
+  position: fixed;
+  left: 1rem;
+  bottom: 6.4rem;
+  z-index: 64;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.72rem 0.4rem 0.45rem;
+  border: 1px solid rgba(158, 200, 185, 0.42);
+  background: linear-gradient(135deg, rgba(9, 38, 53, 0.92), rgba(27, 66, 66, 0.88));
+  color: #e6f6f2;
+  box-shadow: 0 10px 26px rgba(9, 38, 53, 0.36);
+  backdrop-filter: blur(8px);
+  animation: robot-roam 9.5s ease-in-out infinite, robot-bob 2.8s ease-in-out infinite;
+}
+
+.robot-guide-rtl {
+  left: auto;
+  right: 1rem;
+}
+
+.robot-guide-dev-offset {
+  bottom: 9rem;
+}
+
+.robot-guide:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 246, 242, 0.75);
+  box-shadow: 0 16px 34px rgba(9, 38, 53, 0.42);
+}
+
+.robot-guide:focus-visible {
+  outline: 2px solid #e6f6f2;
+  outline-offset: 4px;
+}
+
+.robot-guide__halo {
+  position: absolute;
+  inset: -0.28rem;
+  border-radius: 999px;
+  border: 1px solid rgba(158, 200, 185, 0.26);
+  pointer-events: none;
+}
+
+.robot-guide__body {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: rgba(230, 246, 242, 0.14);
+}
+
+.robot-guide__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robot-blink 4.2s ease-in-out infinite;
+}
+
+.robot-guide__bubble {
+  position: relative;
+  white-space: nowrap;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.whatsapp-fab {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.72rem 0.95rem;
+  background: #25d366;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 30px rgba(10, 42, 35, 0.26);
+  transition: transform 0.18s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.whatsapp-fab-dev-offset {
+  bottom: 4.5rem;
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 35px rgba(10, 42, 35, 0.3);
+  filter: saturate(1.05);
+}
+
+.whatsapp-fab:focus-visible {
+  outline: 2px solid #e6f6f2;
+  outline-offset: 3px;
+}
+
+.whatsapp-fab-rtl {
+  right: auto;
+  left: 1rem;
+}
+
+.whatsapp-fab__ring {
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 999px;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  pointer-events: none;
+  animation: whatsapp-ping 1.8s ease-out infinite;
+}
+
+.whatsapp-fab__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.whatsapp-fab__text {
+  position: relative;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+
+  .site-open {
+    animation: none;
+  }
+
+  .reveal-ready,
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .site-motion-bg,
+  .gradient-motion {
+    animation: none;
+  }
+
+  .parallax-soft,
+  .parallax-deep {
+    transform: none;
+  }
+
+  .animated-ui :is(a, button, input, textarea, select, [role="button"]) {
+    transition: none;
+  }
+
+  .animated-ui .hover-card {
+    transition: none;
+  }
+
+  .robot-guide,
+  .robot-guide__eye {
+    animation: none;
+  }
+
+  .whatsapp-fab,
+  .whatsapp-fab__ring {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .robot-guide {
+    padding: 0.44rem;
+    bottom: 5.85rem;
+  }
+
+  .robot-guide-dev-offset {
+    bottom: 7.5rem;
+  }
+
+  .robot-guide__bubble {
+    display: none;
+  }
+
+  .whatsapp-fab {
+    padding: 0.72rem;
+    border-radius: 999px;
+  }
+
+  .whatsapp-fab-dev-offset {
+    bottom: 4rem;
+  }
+
+  .whatsapp-fab__text {
+    display: none;
+  }
+}
