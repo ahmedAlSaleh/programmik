@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Programmik Website
 
-## Getting Started
+Official website for Programmik (Next.js + static export for GitHub Pages).
 
-First, run the development server:
+## Live Website
+
+- Production URL: https://ahmedalsaleh.github.io/programmik/
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3000/programmik/
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Note:
 
-## Learn More
+- This project uses `basePath: "/programmik"` in `next.config.ts`.
+- Opening `http://localhost:3000/` directly may show 404 by design.
 
-To learn more about Next.js, take a look at the following resources:
+## Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Static output is generated in `out/` (`output: "export"`).
 
-## Deploy on Vercel
+## Deployment (GitHub Pages)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deployment is automatic through GitHub Actions on every push to `main`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Workflow: `.github/workflows/deploy-pages.yml`
+
+If Pages ever shows README content again:
+
+1. Go to **Settings > Pages** in the repo.
+2. Ensure source/build is set to **GitHub Actions**.
+3. Re-run the latest workflow from **Actions** tab.
+
+## Main Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
